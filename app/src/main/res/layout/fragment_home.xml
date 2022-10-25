@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".home">
+    tools:context="home">
 
     <TextView
         android:id="@+id/textView"
@@ -38,6 +38,14 @@
         app:layout_constraintStart_toEndOf="@id/editText"
         android:text="Submit"/>
 
+    <Button
+        android:id="@+id/navigation_but"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go"
+        app:layout_constraintBottom_toBottomOf="@id/Button"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
