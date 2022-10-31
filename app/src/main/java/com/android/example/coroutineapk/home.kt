@@ -20,26 +20,15 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-data class Repo(val id: String, val name: String)
-interface GitHubService {
-    @GET("users/{user}/repos")
-    fun listRepos(@Path("user") user: String?): Call<List<Repo>>
 
 
-}
+
 
 class home : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding
         get() = _binding!!
     private var count = 0
-
-
-    val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.github.com/")
-        .build()
-
-    val gitHubService = retrofit.create(GitHubService::class.java)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +42,7 @@ class home : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding =FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
 
 
@@ -63,9 +52,11 @@ class home : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.navigationBut.setOnClickListener {
             findNavController().navigate(R.id.action_home2_to_gitHubFragment)
+        }
+
+
 
         binding.Button.setOnClickListener {
 
@@ -83,31 +74,32 @@ class home : Fragment() {
         }
 
     }
-}
 
 
-private suspend fun timeDelay() {
-    delay(2000)
-}
+    private suspend fun timeDelay() {
+        delay(2000)
+    }
 
 
-companion object {
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment home.
-     */
-    // TODO: Rename and change types and number of parameters
-    @JvmStatic
-    fun newInstance(param1: String, param2: String) =
-        home().apply {
-            arguments = Bundle().apply {
-                putString(ARG_PARAM1, param1)
-                putString(ARG_PARAM2, param2)
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment home.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            home().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
             }
-        }
-}
+
+    }
+
 }
