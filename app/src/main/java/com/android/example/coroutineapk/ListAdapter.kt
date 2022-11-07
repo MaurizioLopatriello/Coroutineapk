@@ -21,7 +21,7 @@ init {
 
 
 }
-
+data class Repo(val name : String , val id : String)
 class ListAdapter(private val repos: List<Repo>) : RecyclerView.Adapter<RepoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         val repoView = LayoutInflater.from(parent.context).inflate(R.layout.listitems,parent,false)

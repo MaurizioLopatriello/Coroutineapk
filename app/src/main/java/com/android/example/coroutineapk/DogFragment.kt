@@ -10,29 +10,29 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.android.example.coroutineapk.databinding.FragmentGitHubBinding
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-data class Repo(val name: String, val id: String)
+data class Dog(val message: String, val status: String)
 
-interface GitHubService {
-    @GET("users/{user}/repos")
-    suspend fun listRepos(@Path("user") user: String?):List<Repo>
+interface DogService {
+    @GET("api/breeds/image/random")
+    suspend fun getDog():Dog
+
 }
 
 val retrofit = Retrofit.Builder()
-    .baseUrl("https://api.github.com/")
+    .baseUrl("https://dog.ceo/")
     .addConverterFactory(GsonConverterFactory.create())
     .build()
-val gitHubService = retrofit.create(GitHubService::class.java)
+val dogService = retrofit.create(DogService::class.java)
 
 class GitHubFragment : Fragment() {
     private var _binding: FragmentGitHubBinding? = null
@@ -77,11 +77,13 @@ class GitHubFragment : Fragment() {
     fun retrievingRepos() {
         lifecycleScope.launch {
             try {
-                val repos = gitHubService.listRepos("MaurizioLopatriello")
-                showRepos(repos)
-                Log.d("GitHub","$repos")
+                val dog = dogService.getDog()
+               Picasso.get()
+                   .load(dog.message)
+                   .into(binding.dogImage)
+                Log.d("Dog","$dog")
             } catch (e: Exception) {
-                Log.e("GitHubFragment", "Error retrieving repos size :$e")
+                Log.e("DogFragment", "Error retrieving repos size :$e")
                 Snackbar.make(
                     (binding.fragmentGit),
                     "Error retrieving repos",
@@ -97,13 +99,7 @@ class GitHubFragment : Fragment() {
 
 
 
-    fun showRepos(repos:List <Repo>){
-        Log.d("GitHubFragment","List of repos received ${repos.size}")
-        binding.repoList.adapter = ListAdapter(repos)
 
-
-
-    }
 
 
     companion object {
