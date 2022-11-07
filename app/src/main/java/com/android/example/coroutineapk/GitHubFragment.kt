@@ -11,6 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.android.example.coroutineapk.databinding.FragmentGitHubBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.internal.threadFactory
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,13 +28,26 @@ private const val ARG_PARAM2 = "param2"
 data class Repo(val name: String, val id: String)
 
 interface GitHubService {
-    @GET("users/{user}/repos")
-    suspend fun listRepos(@Path("user") user: String?):List<Repo>
+    @GET("Ranks")
+    suspend fun listRanks():List<Ranks>
 }
+val logging= HttpLoggingInterceptor()
+val client = OkHttpClient.Builder()
+    .addInterceptor(logging)
+    .build()
+
+
+
+
 
 val retrofit = Retrofit.Builder()
-    .baseUrl("https://api.github.com/")
+    .client(client)
+    .baseUrl("https://rocket-league1.p.rapidapi.com/ranks/930226ec26174a988dff84898ee13ded")
     .addConverterFactory(GsonConverterFactory.create())
+    .addHeader("User-Agent", "RapidAPI Playground")
+    .addHeader("Accept-Encoding", "identity")
+    .addHeader("X-RapidAPI-Key", "19741e6969msh20e36a4537859e6p181b91jsncff9edd55d1b")
+    .addHeader("X-RapidAPI-Host", "rocket-league1.p.rapidapi.com")
     .build()
 val gitHubService = retrofit.create(GitHubService::class.java)
 
@@ -47,6 +64,7 @@ class GitHubFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            logging.setLevel(HttpLoggingInterceptor.Level.BASIC)
 
         }
     }
@@ -62,6 +80,7 @@ class GitHubFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC)
         binding.buttonBack.setOnClickListener {
             findNavController().navigate(R.id.action_gitHubFragment_to_home2)
 
