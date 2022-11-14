@@ -11,16 +11,15 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_home2_to_gitHubFragment"
-            app:destination="@id/gitHubFragment" />
+            android:id="@+id/action_home2_to_rankFragment"
+            app:destination="@id/rankFragment" />
     </fragment>
     <fragment
-        android:id="@+id/gitHubFragment"
-        android:name="com.android.example.coroutineapk.GitHubFragment"
-        android:label="fragment_git_hub"
-        tools:layout="@layout/fragment_git_hub" >
+        android:id="@+id/rankFragment"
+        android:name="com.android.example.coroutineapk.RankFragment"
+        android:label="RankFragment" >
         <action
-            android:id="@+id/action_gitHubFragment_to_home2"
+            android:id="@+id/action_rankFragment_to_home2"
             app:destination="@id/home2" />
     </fragment>
 </navigation>

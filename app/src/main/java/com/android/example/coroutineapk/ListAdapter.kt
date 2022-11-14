@@ -10,11 +10,11 @@ import retrofit2.Call
 import java.nio.file.Files.find
 
 
-class RepoViewHolder(view: View):RecyclerView.ViewHolder(view){
+class RankViewHolder(view: View):RecyclerView.ViewHolder(view){
 
-val repoName : TextView
+val rankName : TextView
 init {
-    repoName = view.findViewById(R.id.list_Text_view)
+    rankName = view.findViewById(R.id.list_Text_view)
 }
 
 
@@ -22,19 +22,21 @@ init {
 
 }
 
-class ListAdapter(private val repos: List<Repo>) : RecyclerView.Adapter<RepoViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
-        val repoView = LayoutInflater.from(parent.context).inflate(R.layout.listitems,parent,false)
-        return RepoViewHolder(repoView)
+class ListAdapter(private val ranks: List<Ranks.Rank>) : RecyclerView.Adapter<RankViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankViewHolder {
+        val rankView = LayoutInflater.from(parent.context).inflate(R.layout.listitems,parent,false)
+        return RankViewHolder(rankView)
 
     }
 
-    override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
-       holder.repoName.text = "${repos[position].name}"
+    override fun onBindViewHolder(holder: RankViewHolder, position: Int) {
+       //holder.rankName.text = "${ranks}"
     }
 
     override fun getItemCount(): Int {
-        return repos.size
+        return ranks.size
 
     }
 }
+
+
