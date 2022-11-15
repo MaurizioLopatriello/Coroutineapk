@@ -18,35 +18,26 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-data class Ranks(
-    val ranks: List<Rank>,
-    val reward: Reward
+data class Population(
+    val online: Int,
+    val playlists: List<Playlists>
 ) {
-    data class Rank(
-        val division: Int,
-        val played: Int,
-        val rank: String,
-        val playlist: String,
-        val mmr: Int,
-        val streak: Int
-    )
-
-    data class Reward(
-        val progress: Int,
-        val level: String
+    data class Playlists(
+        val population: Int,
+        val name: String
     )
 }
 
-interface RankService {
-    @GET("ranks/:{player}")
+interface PopulationService {
+    @GET("population")
    // @GET("ranks/{player}/ranks")
-    suspend fun listRanks(@Path("player") player: String?): Ranks
+    suspend fun listPopulation(): Population
 }
+
 
 const val API_AUTHORIZATION_HEADER = "x-rapidapi-key"
 
@@ -69,7 +60,7 @@ class RankFragment : Fragment() {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    private val ranksService: RankService = retrofit.create(RankService::class.java)
+    private val populationService: PopulationService = retrofit.create(PopulationService::class.java)
 
     class AuthorizationInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
@@ -110,32 +101,32 @@ class RankFragment : Fragment() {
 
         }
         binding.reposBut.setOnClickListener {
-            retrieveRanks()
+            retrievePopulation()
         }
     }
 
-    private fun retrieveRanks() {
+    private fun retrievePopulation() {
         lifecycleScope.launch {
             try {
-                val ranks = ranksService.listRanks("Carljhonson211")
-                showRank(ranks.ranks)
-                Log.d("RankFragment", "${ranks.ranks}")
+                val population = populationService.listPopulation()
+                showPopulation(population.playlists)
+                Log.d("RankFragment", "${population.playlists}")
             } catch (e: Exception) {
                 Log.e("RankFragment", "Error retrieving ranks size : $e")
                 Snackbar.make(
                     (binding.RankFragment),
                     "Error retrieving ranks",
                     Snackbar.LENGTH_LONG
-                ).setAction("Retry") { retrieveRanks() }.show()
+                ).setAction("Retry") { retrievePopulation() }.show()
 
             }
 
         }
     }
 
-    private fun showRank(ranks: List<Ranks.Rank>) {
-        Log.d("RankFragment", "List of ranks received ${ranks.size}")
-        binding.rankList.adapter = ListAdapter(ranks)
+    private fun showPopulation(population:List<Population.Playlists>) {
+        Log.d("RankFragment", "List of population received $population")
+        binding.rankList.adapter = ListAdapter(population)
     }
 
 

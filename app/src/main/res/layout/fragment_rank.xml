@@ -25,7 +25,7 @@
         android:layout_width="158dp"
         android:layout_height="56dp"
         android:gravity="center"
-        android:text="Here are your ranks"
+        android:text="Here are your population"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -6,15 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 
 import android.view.ViewGroup
-import retrofit2.Call
-import java.nio.file.Files.find
 
 
-class RankViewHolder(view: View):RecyclerView.ViewHolder(view){
+class PopulationViewHolder(view: View):RecyclerView.ViewHolder(view){
 
-val rankName : TextView
+val populationName : TextView
 init {
-    rankName = view.findViewById(R.id.list_Text_view)
+    populationName = view.findViewById(R.id.list_Text_view)
 }
 
 
@@ -22,19 +20,19 @@ init {
 
 }
 
-class ListAdapter(private val ranks: List<Ranks.Rank>) : RecyclerView.Adapter<RankViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankViewHolder {
+class ListAdapter(private val population: List<Population.Playlists>) : RecyclerView.Adapter<PopulationViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopulationViewHolder {
         val rankView = LayoutInflater.from(parent.context).inflate(R.layout.listitems,parent,false)
-        return RankViewHolder(rankView)
+        return PopulationViewHolder(rankView)
 
     }
 
-    override fun onBindViewHolder(holder: RankViewHolder, position: Int) {
-       //holder.rankName.text = "${ranks}"
+    override fun onBindViewHolder(holder: PopulationViewHolder, position: Int) {
+       holder.populationName.text = population[position].name
     }
 
     override fun getItemCount(): Int {
-        return ranks.size
+        return population.size
 
     }
 }
