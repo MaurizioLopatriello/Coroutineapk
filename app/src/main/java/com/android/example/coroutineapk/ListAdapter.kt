@@ -1,18 +1,23 @@
 package com.android.example.coroutineapk
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 
 import android.view.ViewGroup
+import android.widget.ImageView
 
 
 class PopulationViewHolder(view: View):RecyclerView.ViewHolder(view){
 
 val populationName : TextView
+val gameImage : ImageView
 init {
     populationName = view.findViewById(R.id.list_Text_view)
+    gameImage = view.findViewById(R.id.imageView)
 }
 
 
@@ -20,7 +25,7 @@ init {
 
 }
 
-class ListAdapter(private val population: List<Population.Playlists>) : RecyclerView.Adapter<PopulationViewHolder>() {
+class ListAdapter(private val population: List<ApiResponse.ApiResponseItem>) : RecyclerView.Adapter<PopulationViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopulationViewHolder {
         val rankView = LayoutInflater.from(parent.context).inflate(R.layout.listitems,parent,false)
         return PopulationViewHolder(rankView)
@@ -28,7 +33,9 @@ class ListAdapter(private val population: List<Population.Playlists>) : Recycler
     }
 
     override fun onBindViewHolder(holder: PopulationViewHolder, position: Int) {
-       holder.populationName.text = population[position].name
+        val games =population[position]
+       holder.populationName.text = population[position].title
+        holder.gameImage.setImageDrawable(holder.itemView.context.getDrawable(games.thumbnail))
     }
 
     override fun getItemCount(): Int {
@@ -36,5 +43,8 @@ class ListAdapter(private val population: List<Population.Playlists>) : Recycler
 
     }
 }
+
+
+
 
 

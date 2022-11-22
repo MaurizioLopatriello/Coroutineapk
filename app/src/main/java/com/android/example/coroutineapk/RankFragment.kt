@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.android.example.coroutineapk.databinding.FragmentRankBinding
@@ -19,35 +20,22 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-data class Population(
-    val online: Int,
-    val playlists: List<Playlists>
-) {
-    data class Playlists(
-        val population: Int,
-        val name: String
-    )
-}
 
-interface PopulationService {
-    @GET("population")
+
+interface FreeGamesService {
+    @GET("api/games")
    // @GET("ranks/{player}/ranks")
-    suspend fun listPopulation(): Population
+    suspend fun getGameList():ApiResponse
 }
 
 
 const val API_AUTHORIZATION_HEADER = "x-rapidapi-key"
 
-
 class RankFragment : Fragment() {
     private var _binding: FragmentRankBinding? = null
     private val binding
         get() = _binding!!
-    private var param1: String? = null
-    private var param2: String? = null
     private val logging = HttpLoggingInterceptor()
     private val authorization = AuthorizationInterceptor()
     private val client = OkHttpClient.Builder()
@@ -56,11 +44,11 @@ class RankFragment : Fragment() {
         .build()
     private val retrofit: Retrofit = Retrofit.Builder()
         .client(client)
-        .baseUrl("https://rocket-league1.p.rapidapi.com/")
+        .baseUrl("https://free-to-play-games-database.p.rapidapi.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    private val populationService: PopulationService = retrofit.create(PopulationService::class.java)
+    private val gameListService: FreeGamesService = retrofit.create(FreeGamesService::class.java)
 
     class AuthorizationInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
@@ -78,10 +66,7 @@ class RankFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -101,30 +86,30 @@ class RankFragment : Fragment() {
 
         }
         binding.reposBut.setOnClickListener {
-            retrievePopulation()
+            retrieveGameList()
         }
     }
 
-    private fun retrievePopulation() {
+    private fun retrieveGameList() {
         lifecycleScope.launch {
             try {
-                val population = populationService.listPopulation()
-                showPopulation(population.playlists)
-                Log.d("RankFragment", "${population.playlists}")
+                val gameList = gameListService.getGameList()
+                showGameList(gameList)
+                Log.d("RankFragment", "$gameList")
             } catch (e: Exception) {
                 Log.e("RankFragment", "Error retrieving ranks size : $e")
                 Snackbar.make(
                     (binding.RankFragment),
                     "Error retrieving ranks",
                     Snackbar.LENGTH_LONG
-                ).setAction("Retry") { retrievePopulation() }.show()
+                ).setAction("Retry") { retrieveGameList() }.show()
 
             }
 
         }
     }
 
-    private fun showPopulation(population:List<Population.Playlists>) {
+    private fun showGameList(population:List<ApiResponse.ApiResponseItem>) {
         Log.d("RankFragment", "List of population received $population")
         binding.rankList.adapter = ListAdapter(population)
     }
