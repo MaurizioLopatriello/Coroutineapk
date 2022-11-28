@@ -7,18 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import .get()
+
+
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.android.example.coroutineapk.databinding.FragmentRankBinding
 import com.google.android.material.snackbar.Snackbar
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import okhttp3.internal.connection.RealConnectionPool.Companion.get
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,10 +25,8 @@ import retrofit2.http.GET
 
 
 
-interface FreeGamesService {
-    @GET("api/games/image")
-   // @GET("ranks/{player}/ranks")
-    suspend fun getGameList():ApiResponse
+
+
 }
 
 
@@ -98,9 +94,8 @@ class RankFragment : Fragment() {
         lifecycleScope.launch {
             try {
                 val gameList = gameListService.getGameList()
-                Picasso.get()
                 showGameList(gameList)
-                Log.d("RankFragment", "$gameList")
+                Log.d("RankFragment", "${gameList.size}")
             } catch (e: Exception) {
                 Log.e("RankFragment", "Error retrieving ranks size : $e")
                 Snackbar.make(

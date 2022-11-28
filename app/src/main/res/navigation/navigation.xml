@@ -11,15 +11,16 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_home2_to_rankFragment"
-            app:destination="@id/rankFragment" />
+            android:id="@+id/action_home2_to_gameListFragment2"
+            app:destination="@id/gameListFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/rankFragment"
-        android:name="com.android.example.coroutineapk.RankFragment"
-        android:label="RankFragment" >
+        android:id="@+id/gameListFragment2"
+        android:name="com.android.example.coroutineapk.GameListFragment"
+        android:label="fragment_game_list"
+        tools:layout="@layout/fragment_game_list" >
         <action
-            android:id="@+id/action_rankFragment_to_home2"
+            android:id="@+id/action_gameListFragment2_to_home2"
             app:destination="@id/home2" />
     </fragment>
 </navigation>

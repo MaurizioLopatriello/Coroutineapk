@@ -1,31 +1,28 @@
 package com.android.example.coroutineapk
 
-import android.content.Context
-import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 
 import android.view.ViewGroup
-import android.widget.ImageView
 
 
 class PopulationViewHolder(view: View):RecyclerView.ViewHolder(view){
 
-val populationName : TextView
-val gameImage : ImageView
+val gameListName : TextView
+
 init {
-    populationName = view.findViewById(R.id.list_Text_view)
-    gameImage = view.findViewById(R.id.imageView)
-}
-
-
-
+    gameListName = view.findViewById(R.id.list_Text_view)
 
 }
 
-class ListAdapter(private val population: List<ApiResponse.ApiResponseItem>) : RecyclerView.Adapter<PopulationViewHolder>() {
+
+
+
+}
+
+class ListAdapter(private val gameList: List<ApiResponse.ApiResponseItem>) : RecyclerView.Adapter<PopulationViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopulationViewHolder {
         val rankView = LayoutInflater.from(parent.context).inflate(R.layout.listitems,parent,false)
         return PopulationViewHolder(rankView)
@@ -33,13 +30,12 @@ class ListAdapter(private val population: List<ApiResponse.ApiResponseItem>) : R
     }
 
     override fun onBindViewHolder(holder: PopulationViewHolder, position: Int) {
-        val games =population[position]
-       holder.populationName.text = population[position].title
-        holder.gameImage.setImageDrawable(holder.itemView.context.getDrawable(games.thumbnail))
+       holder.gameListName.text = gameList[position].title
+
     }
 
     override fun getItemCount(): Int {
-        return population.size
+        return gameList.size
 
     }
 }
