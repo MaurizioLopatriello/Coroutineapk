@@ -53,7 +53,7 @@ class home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.navigationBut.setOnClickListener {
-            findNavController().navigate(R.id.action_home2_to_rankFragment)
+            findNavController().navigate(R.id.action_home2_to_populationFragment)
         }
 
 

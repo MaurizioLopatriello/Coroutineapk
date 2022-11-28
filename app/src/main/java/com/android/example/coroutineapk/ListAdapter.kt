@@ -20,7 +20,7 @@ init {
 
 }
 
-class ListAdapter(private val population: List<Population.Playlists>) : RecyclerView.Adapter<PopulationViewHolder>() {
+class ListAdapter(private val population:Population.Playlists) : RecyclerView.Adapter<PopulationViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopulationViewHolder {
         val rankView = LayoutInflater.from(parent.context).inflate(R.layout.listitems,parent,false)
         return PopulationViewHolder(rankView)
@@ -28,11 +28,11 @@ class ListAdapter(private val population: List<Population.Playlists>) : Recycler
     }
 
     override fun onBindViewHolder(holder: PopulationViewHolder, position: Int) {
-       holder.populationName.text = population[position].name
+       holder.populationName.text = population.name
     }
 
     override fun getItemCount(): Int {
-        return population.size
+        return population.population
 
     }
 }
