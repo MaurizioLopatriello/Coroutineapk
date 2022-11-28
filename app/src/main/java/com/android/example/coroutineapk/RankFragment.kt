@@ -30,7 +30,7 @@ import retrofit2.http.GET
 }
 
 
-const val API_AUTHORIZATION_HEADER = "x-rapidapi-key"
+
 
 class RankFragment : Fragment() {
     private var _binding: FragmentRankBinding? = null
