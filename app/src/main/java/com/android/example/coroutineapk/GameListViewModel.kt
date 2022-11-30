@@ -24,7 +24,7 @@ class GameListViewModel : ViewModel() {
 
         private val retrofit: Retrofit = Retrofit.Builder()
             .client(client)
-            .baseUrl("https://rocket-league1.p.rapidapi.com/")
+            .baseUrl("https://free-to-play-games-database.p.rapidapi.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

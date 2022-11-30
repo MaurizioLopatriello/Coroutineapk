@@ -22,7 +22,7 @@ init {
 
 }
 
-class ListAdapter(private val gameList: List<ApiResponse.ApiResponseItem>) : RecyclerView.Adapter<PopulationViewHolder>() {
+class ListAdapter(private val gameList:List <ApiResponse.ApiResponseItem>) : RecyclerView.Adapter<PopulationViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopulationViewHolder {
         val rankView = LayoutInflater.from(parent.context).inflate(R.layout.listitems,parent,false)
         return PopulationViewHolder(rankView)
