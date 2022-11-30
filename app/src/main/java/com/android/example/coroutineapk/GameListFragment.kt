@@ -41,7 +41,7 @@ class GameListFragment : Fragment() {
     }
 
     private fun observeGameList() {
-        viewModel.gameListNumber(viewLifecycleOwner) {
+        viewModel.gameListNumber.observe(viewLifecycleOwner) {
             showGameList(it)
         }
         viewModel.error.observe(viewLifecycleOwner) {
