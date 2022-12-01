@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.math.E
 
 class GameListViewModel : ViewModel() {
 
@@ -31,9 +32,9 @@ class GameListViewModel : ViewModel() {
         private val gameListService: GameListService =
             retrofit.create(GameListService::class.java)
 
-        private var _gameListNumber = MutableLiveData<ApiResponse.ApiResponseItem>()
+        private var _gameListNumber = MutableLiveData<List<ApiResponse.ApiResponseItem>>()
         val gameListNumber:
-                LiveData<ApiResponse.ApiResponseItem>
+                LiveData<List<ApiResponse.ApiResponseItem>>
             get() = _gameListNumber
 
         private var _error = MutableLiveData<Exception>()
@@ -49,7 +50,7 @@ class GameListViewModel : ViewModel() {
                 try {
                     _gameListNumber.value = gameListService.getGameList()
                 } catch (error: Exception) {
-                    Log.e("Population Fragment ", "Error retrieving ranks size : $error")
+                    Log.e("GameList Fragment ", "Error retrieving games size : $error")
                     _error.value = error
 
 

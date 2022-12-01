@@ -4,5 +4,5 @@ import retrofit2.http.GET
 
 interface GameListService {
     @GET("api/games")
-    suspend fun getGameList():ApiResponse.ApiResponseItem
+    suspend fun getGameList():List<ApiResponse.ApiResponseItem>
 }
