@@ -50,7 +50,7 @@ class GameListFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner) {
             Snackbar.make(
                 binding.gameListFragment,
-                "error retrieving gamelist ",
+                "error retrieving game list ",
                 Snackbar.LENGTH_LONG
             ).setAction("Retry") { viewModel.gameListNumber }.show()
 

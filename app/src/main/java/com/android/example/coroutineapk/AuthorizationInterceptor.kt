@@ -18,5 +18,3 @@ class AuthorizationInterceptor : Interceptor {
         return chain.proceed(newRequest)
     }
 }
-
-
