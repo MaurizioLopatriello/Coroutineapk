@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 
 import android.view.ViewGroup
+import com.android.example.coroutineapk.GameList.Network.DTO.ApiResponse
 
 
 class PopulationViewHolder(view: View):RecyclerView.ViewHolder(view){

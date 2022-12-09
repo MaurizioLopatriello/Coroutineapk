@@ -3,24 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/home2">
+    app:startDestination="@id/mainActivity">
 
-    <fragment
-        android:id="@+id/home2"
-        android:name="com.android.example.coroutineapk.home"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_home2_to_gameListFragment2"
-            app:destination="@id/gameListFragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/gameListFragment2"
-        android:name="com.android.example.coroutineapk.GameListFragment"
-        android:label="fragment_game_list"
-        tools:layout="@layout/fragment_game_list" >
-        <action
-            android:id="@+id/action_gameListFragment2_to_home2"
-            app:destination="@id/home2" />
-    </fragment>
+    <activity
+        android:id="@+id/gameListActivity2"
+        android:name="com.android.example.coroutineapk.GameList.Ui.GameListActivity2"
+        android:label="activity_game_list2"
+        tools:layout="@layout/activity_game_list2" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.android.example.coroutineapk.GameList.Ui.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

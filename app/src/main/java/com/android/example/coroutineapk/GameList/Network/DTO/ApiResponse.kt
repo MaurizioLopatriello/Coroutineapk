@@ -1,4 +1,6 @@
-package com.android.example.coroutineapk
+package com.android.example.coroutineapk.GameList.Network.DTO
+
+import com.android.example.coroutineapk.GameList.Ui.Model.GameListRepo
 
 class ApiResponse : ArrayList<ApiResponse.ApiResponseItem>(){
     data class ApiResponseItem(
@@ -14,4 +16,5 @@ class ApiResponse : ArrayList<ApiResponse.ApiResponseItem>(){
         val release_date: String,
         val freetogame_profile_url: String
     )
+
 }

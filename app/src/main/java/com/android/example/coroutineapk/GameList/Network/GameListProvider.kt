@@ -1,10 +1,12 @@
-package com.android.example.coroutineapk
+package com.android.example.coroutineapk.GameList.Network
 
+import com.android.example.coroutineapk.GameList.Network.DTO.AuthorizationInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+const val  PAGE_SIZE = 20
 class GameListProvider {
 
 
@@ -28,5 +30,5 @@ class GameListProvider {
         logging.level = HttpLoggingInterceptor.Level.BASIC
     }
 
-    fun provide():GameListService=gameListService
+   suspend fun provide() =gameListService.getGameList(PAGE_SIZE)
 }
