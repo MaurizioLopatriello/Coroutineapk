@@ -1,11 +1,13 @@
 package com.android.example.coroutineapk
 
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +23,7 @@ class GameListFragment : Fragment() {
 
     private lateinit var viewModel: GameListViewModel
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +34,7 @@ class GameListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[GameListViewModel::class.java]
+        viewModel =(parentFragment as  MyAppArchitecture) .gameListViewModelFactory.create(GameListViewModel::class.java)
         binding.reposBut.setOnClickListener {
             observeGameList()
             viewModel.retrieveGameList()
