@@ -30,5 +30,5 @@ class GameListProvider {
         logging.level = HttpLoggingInterceptor.Level.BASIC
     }
 
-   suspend fun provide() =gameListService.getGameList(PAGE_SIZE)
+   suspend fun getGameList() =gameListService.getGameList(PAGE_SIZE)
 }
