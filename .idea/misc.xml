@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Coroutineapk/app/src/main/res/layout/activity_game_list2.xml" value="0.55" />
         <entry key="..\:/Coroutineapk/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Coroutineapk/app/src/main/res/layout/fragment_game_list.xml" value="0.3061594202898551" />
         <entry key="..\:/Coroutineapk/app/src/main/res/layout/fragment_git_hub.xml" value="0.33" />
         <entry key="..\:/Coroutineapk/app/src/main/res/layout/fragment_home.xml" value="0.55" />
         <entry key="..\:/Coroutineapk/app/src/main/res/layout/listitems.xml" value="0.33" />
