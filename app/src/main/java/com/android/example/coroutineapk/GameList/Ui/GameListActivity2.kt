@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.android.example.coroutineapk.GameList.Network.DTO.ApiResponse
 import com.android.example.coroutineapk.GameList.Ui.UseCases.GameLIstState
 import com.android.example.coroutineapk.GameList.Ui.UseCases.GameListEvent
@@ -13,6 +14,7 @@ import com.android.example.coroutineapk.GameList.Ui.UseCases.MyAppArchitecture
 import com.android.example.coroutineapk.ListAdapter
 import com.android.example.coroutineapk.databinding.ActivityGameList2Binding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 
 class GameListActivity2 : AppCompatActivity() {
@@ -38,21 +40,21 @@ class GameListActivity2 : AppCompatActivity() {
     }
 
     private fun setupObserver(view: View) {
-
-        viewModel.gameLIstState.observe(this) { state ->
-            when(state){
-                is GameLIstState.GameList -> {
-                    showGameList(state.list)
-                }
-                GameLIstState.FirstTimeUser ->{
-
-                }
-                is GameLIstState.Error -> {
-                    Snackbar.make(
-                        binding.gameListActivity,
-                        "error retrieving gamelist ",
-                        Snackbar.LENGTH_LONG
-                    ).setAction("Retry") { viewModel.send(GameListEvent.GetGameList) }.show()
+        lifecycleScope.launch {
+            viewModel.gameLIstState.collect { state ->
+                when (state) {
+                    is GameLIstState.GameList -> {
+                        showGameList(state.list)
+                    }
+                    GameLIstState.FirstTimeUser -> {
+                    }
+                    is GameLIstState.Error -> {
+                        Snackbar.make(
+                            binding.gameListActivity,
+                            "error retrieving gamelist ",
+                            Snackbar.LENGTH_LONG
+                        ).setAction("Retry") { viewModel.send(GameListEvent.GetGameList) }.show()
+                    }
                 }
             }
         }
