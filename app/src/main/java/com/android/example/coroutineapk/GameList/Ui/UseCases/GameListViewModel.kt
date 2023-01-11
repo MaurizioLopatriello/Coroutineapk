@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.*
 import com.android.example.coroutineapk.GameList.Network.DTO.ApiResponse
+import com.android.example.coroutineapk.GameList.Network.GameListDao
 import com.android.example.coroutineapk.GameList.Network.GameListProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +26,8 @@ sealed class GameListEvent {
 
 class GameListViewModel(
     private val gameListProvider: GameListProvider,
-    preferences: SharedPreferences
+    preferences: SharedPreferences,
+    gameListDao: GameListDao
 ) : ViewModel() {
 
     /* private var _gameListNumber = MutableLiveData<List<ApiResponse.ApiResponseItem>>()

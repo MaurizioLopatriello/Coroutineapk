@@ -1,8 +1,7 @@
 package com.android.example.coroutineapk.GameList.Network.DTO
 
-import com.android.example.coroutineapk.GameList.Ui.Model.GameListRepo
-
 class ApiResponse : ArrayList<ApiResponse.ApiResponseItem>(){
+
     data class ApiResponseItem(
         val id: Int,
         val title: String,
