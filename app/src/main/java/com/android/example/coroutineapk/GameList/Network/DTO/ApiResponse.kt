@@ -15,5 +15,4 @@ class ApiResponse : ArrayList<ApiResponse.ApiResponseItem>(){
         val release_date: String,
         val freetogame_profile_url: String
     )
-
 }
