@@ -1,4 +1,4 @@
-package com.android.example.coroutineapk.GameList.Network.DTO
+package com.android.example.coroutineapk.gameList.network.dto
 
 import okhttp3.Interceptor
 import okhttp3.Response

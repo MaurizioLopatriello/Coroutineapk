@@ -1,4 +1,4 @@
-package com.android.example.coroutineapk.GameList.Ui
+package com.android.example.coroutineapk.gameList.ui
 
 import android.content.Intent
 import android.os.Bundle

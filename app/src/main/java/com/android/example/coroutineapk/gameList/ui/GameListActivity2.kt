@@ -1,4 +1,4 @@
-package com.android.example.coroutineapk.GameList.Ui
+package com.android.example.coroutineapk.gameList.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,11 +6,11 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.android.example.coroutineapk.GameList.Network.DTO.ApiResponse
-import com.android.example.coroutineapk.GameList.Ui.UseCases.GameLIstState
-import com.android.example.coroutineapk.GameList.Ui.UseCases.GameListEvent
-import com.android.example.coroutineapk.GameList.Ui.UseCases.GameListViewModel
-import com.android.example.coroutineapk.GameList.Ui.UseCases.MyAppArchitecture
+import com.android.example.coroutineapk.gameList.network.dto.ApiResponse
+import com.android.example.coroutineapk.gameList.ui.usecases.GameLIstState
+import com.android.example.coroutineapk.gameList.ui.usecases.GameListEvent
+import com.android.example.coroutineapk.gameList.ui.usecases.GameListViewModel
+import com.android.example.coroutineapk.gameList.ui.usecases.MyAppArchitecture
 import com.android.example.coroutineapk.ListAdapter
 import com.android.example.coroutineapk.databinding.ActivityGameList2Binding
 import com.google.android.material.snackbar.Snackbar

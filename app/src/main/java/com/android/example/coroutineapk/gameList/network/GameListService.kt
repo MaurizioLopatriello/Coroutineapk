@@ -1,6 +1,6 @@
-package com.android.example.coroutineapk.GameList.Network
+package com.android.example.coroutineapk.gameList.network
 
-import com.android.example.coroutineapk.GameList.Network.DTO.ApiResponse
+import com.android.example.coroutineapk.gameList.network.dto.ApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

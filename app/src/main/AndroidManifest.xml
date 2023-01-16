@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".GameList.Ui.UseCases.MyAppArchitecture"
+        android:name=".gameList.ui.usecases.MyAppArchitecture"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,10 +17,10 @@
         android:theme="@style/Theme.Coroutineapk"
         tools:targetApi="31">
         <activity
-            android:name=".GameList.Ui.GameListActivity2"
+            android:name=".gameList.ui.GameListActivity2"
             android:exported="false" />
         <activity
-            android:name=".GameList.Ui.MainActivity"
+            android:name=".gameList.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

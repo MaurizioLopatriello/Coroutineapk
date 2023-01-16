@@ -1,11 +1,11 @@
-package com.android.example.coroutineapk.GameList.Ui.UseCases
+package com.android.example.coroutineapk.gameList.ui.usecases
 
 import android.app.Application
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.room.Room
-import com.android.example.coroutineapk.GameList.Network.DTO.AppDatabase
-import com.android.example.coroutineapk.GameList.Network.GameListProvider
+import com.android.example.coroutineapk.gameList.network.dto.AppDatabase
+import com.android.example.coroutineapk.gameList.network.GameListProvider
 
 class MyAppArchitecture : Application() {
     private val gameListProvider = GameListProvider()
@@ -22,7 +22,7 @@ class MyAppArchitecture : Application() {
             AppDatabase::class.java,
             "app-database"
         ).build()
-        gameListViewModelFactory= GameListViewModelFactory(gameListProvider,preferences,database.getGamesDao())
+        gameListViewModelFactory= GameListViewModelFactory(gameListProvider,preferences,database)
 
 
 

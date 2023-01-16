@@ -7,12 +7,12 @@
 
     <activity
         android:id="@+id/gameListActivity2"
-        android:name="com.android.example.coroutineapk.GameList.Ui.GameListActivity2"
+        android:name="com.android.example.coroutineapk.gameList.ui.GameListActivity2"
         android:label="activity_game_list2"
         tools:layout="@layout/activity_game_list2" />
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.android.example.coroutineapk.GameList.Ui.MainActivity"
+        android:name="com.android.example.coroutineapk.gameList.ui.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 </navigation>

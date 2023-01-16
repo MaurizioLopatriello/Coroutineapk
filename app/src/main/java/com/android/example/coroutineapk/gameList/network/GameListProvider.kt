@@ -1,6 +1,6 @@
-package com.android.example.coroutineapk.GameList.Network
+package com.android.example.coroutineapk.gameList.network
 
-import com.android.example.coroutineapk.GameList.Network.DTO.AuthorizationInterceptor
+import com.android.example.coroutineapk.gameList.network.dto.AuthorizationInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
